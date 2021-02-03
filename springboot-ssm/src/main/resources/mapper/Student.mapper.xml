@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yp.springboot.ssm.mapper.IStudentMapper">
+    <resultMap id="studentMapper" type="com.yp.springboot.ssm.entity.Student">
+        <id property="sno" column="sno"/>
+        <result property="name" column="sname"/>
+        <result property="sex" column="ssex"/>
+        <result property="age" column="sage"/>
+        <result property="dept" column="sdept"/>
+    </resultMap>
+
+
+    <insert id="save">
+        insert into student (sno, sname, ssex, sage, sdept) values (#{sno}, #{name}, #{sex}, #{age}, #{dept})
+    </insert>
+
+    <delete id="delete">
+        delete from student where sno = #{sno}
+    </delete>
+
+    <update id="alter">
+        update student set sdept = #{sdept} where sno = #{sno}
+    </update>
+
+    <select id="findAllByDept" resultMap="studentMapper">
+        select sno, sname, ssex, sdept, sage from student where sdept = #{sdept}
+    </select>
+
+    <select id="findOne" resultMap="studentMapper">
+        select sno, sname, ssex, sdept, sage from student where sno = #{sno} and sname = #{sname}
+    </select>
+
+
+
+</mapper>
